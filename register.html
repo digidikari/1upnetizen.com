@@ -81,6 +81,7 @@
         <input type="email" id="email" placeholder="Email">
         <input type="password" id="password" placeholder="Password">
         <button onclick="register()">Register</button>
+        <button onclick="registerWithGoogle()" style="background-color: #db4437;">Register with Google</button>
         <p>Sudah punya akun? <a href="index.html">Login</a></p>
     </div>
     <script>
@@ -112,7 +113,18 @@
                 .catch(error => alert(error.message));
         }
         
+        function registerWithGoogle() {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            auth.signInWithPopup(provider)
+                .then(result => {
+                    alert("Registrasi dengan Google berhasil!");
+                    window.location.href = "index.html";
+                })
+                .catch(error => alert(error.message));
+        }
+        
         window.register = register;
+        window.registerWithGoogle = registerWithGoogle;
     </script>
 </body>
 </html>
