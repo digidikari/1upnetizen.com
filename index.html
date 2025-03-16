@@ -3,38 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MLM Matrix 3x10</title>
+    <title>1UP NETIZEN</title>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
     <style>
+        @keyframes neonGlow {
+            0% { text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000; }
+            50% { text-shadow: 0 0 20px #ff0000, 0 0 30px #ff4500; }
+            100% { text-shadow: 0 0 5px #ff0000, 0 0 10px #ff0000; }
+        }
+
+        @keyframes moveAround {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(10px); }
+            100% { transform: translateX(0); }
+        }
+
+        @keyframes borderLights {
+            0% { box-shadow: 0px 0px 5px red; }
+            25% { box-shadow: 0px 0px 10px yellow; }
+            50% { box-shadow: 0px 0px 15px green; }
+            75% { box-shadow: 0px 0px 10px blue; }
+            100% { box-shadow: 0px 0px 5px red; }
+        }
+
         body {
             font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f4f4f4;
+            background-color: #111;
             margin: 0;
+            color: white;
         }
         .container {
-            background: white;
+            background: rgba(255, 255, 255, 0.1);
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            animation: borderLights 3s infinite alternate;
             text-align: center;
-            width: 300px;
+            width: 320px;
         }
         h1 {
             font-size: 24px;
             margin-bottom: 10px;
+            animation: neonGlow 1.5s infinite alternate;
         }
         input {
-            width: 100%;
+            width: calc(100% - 20px);
             padding: 10px;
-            margin: 10px 0;
+            margin: 10px 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
+            text-align: center;
         }
         button {
             width: 100%;
@@ -45,9 +68,10 @@
             color: white;
             cursor: pointer;
             margin-top: 10px;
+            animation: moveAround 2s infinite alternate;
         }
         button:hover {
-            background-color: #0056b3;
+            background-color: #ff4500;
         }
         #dashboard {
             display: none;
@@ -56,7 +80,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>MLM Matrix 3x10</h1>
+        <h1>1UP NETIZEN</h1>
         <div id="auth">
             <h2>Login</h2>
             <input type="email" id="email" placeholder="Email">
