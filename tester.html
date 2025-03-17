@@ -17,11 +17,9 @@
         }
         body {
             display: flex;
-            flex-direction: column;
             height: 100vh;
             background-color: #111;
             color: white;
-            align-items: center;
         }
         .sidebar {
             width: 250px;
@@ -55,91 +53,93 @@
             transform: scale(1.1);
             box-shadow: 0 0 10px #ff4500;
         }
+        .toggle-btn {
+            font-size: 24px;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            transition: transform 0.3s ease-in-out, left 0.3s ease-in-out;
+        }
+        .sidebar.active ~ .toggle-btn {
+            left: 260px;
+            transform: translateX(20px);
+        }
+        .toggle-btn.active i {
+            transform: rotate(90deg);
+        }
         .content {
             flex: 1;
-            padding: 40px 20px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
             text-align: center;
             width: 100%;
         }
-        .profile-card, .info-card {
-            background-color: #222;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px #ff4500;
-            text-align: center;
-            width: 300px;
-            margin-bottom: 15px;
+        .social-icons {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+        }
+        .social-icons a {
+            color: white;
+            font-size: 20px;
             transition: 0.3s ease-in-out;
         }
-        .profile-card:hover, .info-card:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px #ff4500;
-        }
-        .profile-card h3, .info-card h3 {
-            margin-bottom: 10px;
+        .social-icons a:hover {
             color: #ff4500;
-        }
-        .profile-card p, .info-card p {
-            font-size: 1.1em;
-        }
-        .payment-icons {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        .payment-icons img {
-            width: 50px;
-            height: auto;
-            transition: transform 0.3s ease-in-out;
-        }
-        .payment-icons img:hover {
             transform: scale(1.2);
-        }
-        .footer {
-            margin-top: 30px;
-            padding: 10px;
-            text-align: center;
-            color: #bbb;
         }
     </style>
 </head>
 <body>
-    <div class="content" id="content">
-        <h2 style="margin-bottom: 20px;">Selamat Datang, <span id="username">John Doe</span></h2>
-        <div class="profile-card">
-            <h3>Informasi Pengguna</h3>
-            <p><strong>Nama:</strong> John Doe</p>
-            <p><strong>Email:</strong> johndoe@example.com</p>
-            <p><strong>No HP:</strong> +62 812 3456 7890</p>
-        </div>
-        <div class="info-card">
-            <h3>Total Saldo</h3>
-            <p>Rp 1.000.000</p>
-        </div>
-        <div class="info-card">
-            <h3>Total Jaringan</h3>
-            <p>250 Anggota</p>
-        </div>
-        <div class="info-card">
-            <h3>Nama Upline</h3>
-            <p>Super Leader</p>
-        </div>
-        <div class="payment-icons">
-            <img src="paypal.png" alt="PayPal">
-            <img src="payeer.png" alt="Payeer">
-            <img src="dana.png" alt="Dana">
-            <img src="ovo.png" alt="OVO">
-            <img src="gopay.png" alt="GoPay">
-            <img src="shopeepay.png" alt="ShopeePay">
-            <img src="alfamart.png" alt="Alfamart">
-            <img src="indomaret.png" alt="Indomaret">
-            <img src="qris.png" alt="QRIS">
-        </div>
-        <div class="footer">© 2025 1UP Netizen</div>
+    <div class="toggle-btn" id="toggleBtn" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
     </div>
+    <div class="sidebar" id="sidebar">
+        <h2>1UP NETIZEN</h2>
+        <div class="menu">
+            <a href="#"><i class="fas fa-home"></i> Dashboard</a>
+            <a href="#"><i class="fas fa-network-wired"></i> Network</a>
+            <a href="#"><i class="fas fa-credit-card"></i> Subscribe</a>
+            <a href="#"><i class="fas fa-wallet"></i> Wallet</a>
+            <a href="#"><i class="fas fa-gift"></i> Reward</a>
+            <a href="#"><i class="fas fa-chart-line"></i> Marketing Plan</a>
+            <a href="#"><i class="fas fa-user"></i> User Profile</a>
+            <a href="#"><i class="fas fa-language"></i> Bahasa</a>
+            <a href="#"><i class="fas fa-users"></i> Group</a>
+        </div>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+    </div>
+    <div class="content" id="content">
+        <h2>Welcome to Your Dashboard</h2>
+        <p>Manage your account, view your network, and track your earnings.</p>
+    </div>
+    <script>
+        function toggleSidebar() {
+            let sidebar = document.getElementById("sidebar");
+            let toggleBtn = document.getElementById("toggleBtn");
+            
+            sidebar.classList.toggle("active");
+            toggleBtn.classList.toggle("active");
+            
+            let icon = toggleBtn.querySelector("i");
+            if (icon.classList.contains("fa-bars")) {
+                icon.classList.remove("fa-bars");
+                icon.classList.add("fa-times");
+            } else {
+                icon.classList.remove("fa-times");
+                icon.classList.add("fa-bars");
+            }
+        }
+    </script>
 </body>
 </html>
