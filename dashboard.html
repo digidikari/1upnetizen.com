@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - 1UP NETIZEN</title>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            display: flex;
+            height: 100vh;
+            background-color: #111;
+            color: white;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #1e1e2d;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100%;
+            left: -250px;
+            transition: left 0.3s ease-in-out;
+        }
+        .sidebar.active {
+            left: 0;
+        }
+        .menu a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            transition: 0.3s;
+        }
+        .menu a i {
+            margin-right: 10px;
+        }
+        .menu a:hover {
+            background-color: #ff4500;
+        }
+        .toggle-btn {
+            font-size: 24px;
+            cursor: pointer;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 100;
+            transition: transform 0.3s ease-in-out, left 0.3s ease-in-out;
+        }
+        .sidebar.active ~ .toggle-btn {
+            left: 260px;
+            transform: translateX(20px);
+        }
+        .toggle-btn.active i {
+            transform: rotate(90deg);
+        }
+        .content {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+        }
+        .social-icons {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+        }
+        .social-icons a {
+            color: white;
+            font-size: 20px;
+            transition: 0.3s;
+        }
+        .social-icons a:hover {
+            color: #ff4500;
+        }
+    </style>
+</head>
+<body>
+    <div class="toggle-btn" id="toggleBtn" onclick="toggleSidebar()">
+        <i class="fas fa-bars"></i>
+    </div>
+    <div class="sidebar" id="sidebar">
+        <h2>1UP NETIZEN</h2>
+        <div class="menu">
+            <a href="#"><i class="fas fa-home"></i> Dashboard</a>
+            <a href="#"><i class="fas fa-network-wired"></i> Network</a>
+            <a href="#"><i class="fas fa-credit-card"></i> Subscribe</a>
+            <a href="#"><i class="fas fa-wallet"></i> Wallet</a>
+            <a href="#"><i class="fas fa-gift"></i> Reward</a>
+            <a href="#"><i class="fas fa-chart-line"></i> Marketing Plan</a>
+            <a href="#"><i class="fas fa-user"></i> User Profile</a>
+            <a href="#"><i class="fas fa-language"></i> Bahasa</a>
+            <a href="#"><i class="fas fa-users"></i> Group</a>
+        </div>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+    </div>
+    <div class="content" id="content">
+        <h2>Welcome to Your Dashboard</h2>
+        <p>Manage your account, view your network, and track your earnings.</p>
+    </div>
+    <script>
+        function toggleSidebar() {
+            let sidebar = document.getElementById("sidebar");
+            let toggleBtn = document.getElementById("toggleBtn");
+            
+            sidebar.classList.toggle("active");
+            toggleBtn.classList.toggle("active");
+            
+            let icon = toggleBtn.querySelector("i");
+            if (icon.classList.contains("fa-bars")) {
+                icon.classList.remove("fa-bars");
+                icon.classList.add("fa-times");
+            } else {
+                icon.classList.remove("fa-times");
+                icon.classList.add("fa-bars");
+            }
+        }
+    </script>
+</body>
+</html>
