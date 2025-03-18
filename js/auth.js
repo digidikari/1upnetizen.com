@@ -1,5 +1,46 @@
 const auth = firebase.auth();
 
+function showSuccess(message) {
+    Swal.fire({
+        icon: 'success',
+        title: 'Berhasil',
+        text: message,
+    });
+}
+
+function showError(message) {
+    Swal.fire({
+        icon: 'error',
+        title: 'Gagal',
+        text: message,
+    });
+}
+
+function login() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    
+    if (!validateEmail(email)) {
+        showError("Email tidak valid!");
+        return;
+    }
+    
+    if (!validatePassword(password)) {
+        showError("Password harus minimal 6 karakter!");
+        return;
+    }
+    
+    setLoading(true);
+    
+    auth.signInWithEmailAndPassword(email, password)
+        .then(userCredential => {
+            showSuccess("Login berhasil!");
+            window.location.href = "dashboard.html";
+        })
+        .catch(error => showError(error.message))
+        .finally(() => setLoading(false));
+}
+
 function login(email, password) {
     auth.signInWithEmailAndPassword(email, password)
         .then(userCredential => {
