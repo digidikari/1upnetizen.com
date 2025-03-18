@@ -69,6 +69,44 @@ function login() {
         .catch(error => alert(error.message));
 }
 
+function setLoading(isLoading) {
+    const buttons = document.querySelectorAll("button");
+    buttons.forEach(button => {
+        button.disabled = isLoading;
+    });
+    
+    if (isLoading) {
+        document.body.style.cursor = "wait";
+    } else {
+        document.body.style.cursor = "default";
+    }
+}
+
+function login() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    
+    if (!validateEmail(email)) {
+        alert("Email tidak valid!");
+        return;
+    }
+    
+    if (!validatePassword(password)) {
+        alert("Password harus minimal 6 karakter!");
+        return;
+    }
+    
+    setLoading(true);
+    
+    auth.signInWithEmailAndPassword(email, password)
+        .then(userCredential => {
+            alert("Login berhasil!");
+            window.location.href = "dashboard.html";
+        })
+        .catch(error => alert(error.message))
+        .finally(() => setLoading(false));
+}
+
 function resetPassword() {
     const email = prompt("Masukkan email Anda:");
     
