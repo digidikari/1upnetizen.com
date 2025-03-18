@@ -12,3 +12,15 @@ if (!firebase.apps.length) {
 }
 
 firebase.analytics().logEvent('login');
+
+function addDownline(uplineId, downlineId) {
+    db.collection('users').doc(uplineId).update({
+        downline: firebase.firestore.FieldValue.arrayUnion(downlineId)
+    })
+    .then(() => {
+        console.log("Downline berhasil ditambahkan!");
+    })
+    .catch(error => {
+        console.error("Gagal menambahkan downline:", error);
+    });
+}
