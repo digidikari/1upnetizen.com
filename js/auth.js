@@ -69,6 +69,20 @@ function login() {
         .catch(error => alert(error.message));
 }
 
+function resetPassword() {
+    const email = prompt("Masukkan email Anda:");
+    
+    if (email && validateEmail(email)) {
+        auth.sendPasswordResetEmail(email)
+            .then(() => alert("Email reset password telah dikirim!"))
+            .catch(error => alert(error.message));
+    } else {
+        alert("Email tidak valid!");
+    }
+}
+
+window.resetPassword = resetPassword;
+
 window.login = login;
 window.loginWithGoogle = loginWithGoogle;
 window.register = register;
