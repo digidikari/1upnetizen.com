@@ -80,3 +80,25 @@ button:hover {
 .google-btn:active {
     transform: scale(0.95);
 }
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+    
+    .sidebar {
+        width: 100%;
+        left: -100%;
+    }
+    
+    .sidebar.active {
+        left: 0;
+    }
+    
+    .toggle-btn {
+        left: 10px;
+    }
+    
+    .sidebar.active ~ .toggle-btn {
+        left: calc(100% - 50px);
+    }
+}
